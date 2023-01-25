@@ -1,4 +1,4 @@
-from flask import Response, request
+from flask import Response, request, render_template, make_response
 from flask_jwt_extended import create_access_token
 from database.models import User
 from flask_restful import Resource
@@ -10,7 +10,7 @@ InternalServerError
 class SignupApi(Resource):
     def post(self):
         try:
-            body = request.get_json()
+            body = {'email': request.form['email'], 'password': request.form['password']}
             user =  User(**body)
             user.hash_password()
             user.save()
@@ -26,9 +26,8 @@ class SignupApi(Resource):
 class LoginApi(Resource):
     def post(self):
         try:
-            body = request.get_json()
-            user = User.objects.get(email=body.get('email'))
-            authorized = user.check_password(body.get('password'))
+            user = User.objects.get(email=request.form['email'])
+            authorized = user.check_password(request.form['password'])
             if not authorized:
                 raise UnauthorizedError
 
@@ -39,3 +38,11 @@ class LoginApi(Resource):
             raise UnauthorizedError
         except Exception as e:
             raise InternalServerError
+
+class LoginPageApi(Resource):
+    def get(self):
+        return make_response(render_template('login.html'), 200)
+
+class SignupPageApi(Resource):
+    def get(self):
+        return make_response(render_template('signup.html'), 200)

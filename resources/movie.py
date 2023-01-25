@@ -1,4 +1,4 @@
-from flask import Response, request
+from flask import Response, request, render_template, make_response
 from database.models import Movie, User
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
@@ -11,7 +11,8 @@ class MoviesApi(Resource):
     def get(self):
         query = Movie.objects()
         movies = Movie.objects().to_json()
-        return Response(movies, mimetype="application/json", status=200)
+        headers = {'Content-Type': 'text/html'}
+        return make_response(render_template("display_movies.html", value=movies), 200, headers)
 
     @jwt_required()
     def post(self):
@@ -69,3 +70,14 @@ class MovieApi(Resource):
             raise MovieNotExistsError
         except Exception:
             raise InternalServerError
+    
+class MovieApibyname(Resource):
+    def get(self, name):
+        try:
+            movies = Movie.objects.get(name=name).to_json()
+            return Response(movies, mimetype="application/json", status=200)
+        except DoesNotExist:
+            raise MovieNotExistsError
+        except Exception:
+            raise InternalServerError
+        
