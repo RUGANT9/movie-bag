@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>MOVIE BAG</title>
-    </head>
-    <body>
-        <h1>
-            Welcome to the MOVIE BAG application home page
-        </h1>
-        <form action="/api/movies" method="get">
-            <button name="movies_button" type="submit">Click to get List of Movies</button>
-        </form>
-        <br>
 
-        <form action="/api/login_page">
-            <button name="login_button" type="submit">Login</button>
-        </form>
-        <br>
+<head>
+    <title>MOVIE BAG</title>
+</head>
 
-        New User? Please Signup
-        <form action="/api/signup_page">
-            <button name="signup_button" type="submit">Signup</button>
-        </form>
-    </body>
+<body>
+    <br>
+    <h1>
+        RUGANT
+    </h1>
+    <br>
+    <h2> Find all the information you need about movies!</h2>
+    <br>
+    <form action="/api/login_page">
+        <button name="login_button" type="submit">Login</button>
+    </form>
+    <br>
+
+    New User? Please Signup
+    <form action="/api/signup_page">
+        <button name="signup_button" type="submit">Signup</button>
+    </form>
+    <br>
+    <form>
+        <label for="language">Choose Language</label>
+        <br>
+        <select name="language" id="language">
+            <option value="English" selected>&#127758; English</option>
+            <option value="Spanish">&#127758; Espanol</option>
+            <option value="French">&#127758; Francais</option>
+            <option value="German">&#127758; Deutsch</option>
+        </select>
+    </form>
+
+</body>
+
 </html>

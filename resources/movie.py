@@ -72,9 +72,10 @@ class MovieApi(Resource):
             raise InternalServerError
     
 class MovieApibyname(Resource):
-    def get(self, name):
+    def get(self):
+        return make_response(render_template('testing.html', value=request.__dict__), 200)
         try:
-            movies = Movie.objects.get(name=name).to_json()
+            movies = Movie.objects.get(name=request.form['movie_name']).to_json()
             return Response(movies, mimetype="application/json", status=200)
         except DoesNotExist:
             raise MovieNotExistsError

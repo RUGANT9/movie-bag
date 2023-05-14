@@ -9,6 +9,6 @@ def initialize_routes(api):
 
     api.add_resource(SignupApi, '/api/auth/signup')
     api.add_resource(LoginApi, '/api/auth/login')
-    api.add_resource(MovieApibyname, '/api/moviesbyname/<name>')
+    api.add_resource(MovieApibyname, '/api/moviesbyname/name')
     api.add_resource(LoginPageApi, '/api/login_page')
     api.add_resource(SignupPageApi, '/api/signup_page')

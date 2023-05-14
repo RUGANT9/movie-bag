@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MOVIE BAG</title>
+    </head>
+    <body>
+        {% block content %}
+        <h1>
+            Welcome to the MOVIE BAG application home page
+        </h1>
+        <form action="/api/movies" method="get">
+            <button name="movies_button" type="submit">Click to get List of Movies</button>
+        </form>
+
+        <form action="/api/movies" method="post">
+            <button name="movies_button" type="submit">Click to Add Movies</button>
+        </form>
+
+        <form action="/api/moviesbyname/name" method="delete">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="movie_name" autofocus="">
+                </div>
+            </div>
+            <button name="movies_button" type="submit">Click to Delete Movie by name</button>
+        </form>
+
+        <form action="/api/moviesbyname/name" method="get">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="movie_name" autofocus="">
+                </div>
+            </div>
+            <button name="movies_button">Click to get Movie by name</button>
+        </form>
+
+        <form action="/api/moviesbyname/name" method="put">
+            <button name="movies_button" type="submit">Click to update Movie by name</button>
+        </form>
+        {% endblock %}
+        </body>
+</html>
